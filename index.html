@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kid Trivia Quest</title>
+  <title>Kid Trivia Quest V4</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -12,18 +12,30 @@
       <header class="hero">
         <div>
           <p class="eyebrow">Kid Trivia Quest</p>
-          <h1>Pick your adventure!</h1>
-          <p class="sub">Choose an age group and category, then answer fun questions.</p>
+          <h1>Trivia Adventure</h1>
+          <p class="sub">Pick a player, choose a quest, earn badges, and learn as you go.</p>
         </div>
-        <button id="parentBtn" class="ghost">Parent Panel</button>
+        <div class="heroActions">
+          <button id="soundBtn" class="ghost">Sound: On</button>
+          <button id="parentBtn" class="ghost">Parent Panel</button>
+        </div>
       </header>
 
       <section id="setup" class="panel">
-        <label>Player name
-          <input id="playerName" type="text" placeholder="Example: Saylor" maxlength="16" />
-        </label>
-
         <div class="grid two">
+          <label>Player name
+            <input id="playerName" type="text" placeholder="Example: Saylor" maxlength="16" />
+          </label>
+          <label>Quest mode
+            <select id="modeSelect">
+              <option value="classic">Classic</option>
+              <option value="timed">Timed Challenge</option>
+              <option value="streak">Streak Builder</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="grid three">
           <label>Age group
             <select id="ageGroup">
               <option value="5-7">Ages 5–7</option>
@@ -31,7 +43,6 @@
               <option value="11-13">Ages 11–13</option>
             </select>
           </label>
-
           <label>Category
             <select id="categorySelect">
               <option value="All">All Categories</option>
@@ -42,11 +53,21 @@
               <option value="Sports">Sports</option>
               <option value="Food">Food</option>
               <option value="Space">Space</option>
+              <option value="Math">Math</option>
+              <option value="Reading">Reading</option>
+            </select>
+          </label>
+          <label>Difficulty
+            <select id="difficultySelect">
+              <option value="All">All</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </label>
         </div>
 
-        <button id="startBtn" class="primary">Start Game</button>
+        <button id="startBtn" class="primary">Start Quest</button>
       </section>
 
       <section id="game" class="panel hidden">
@@ -55,7 +76,11 @@
             <p id="playerBadge" class="badge">Player</p>
             <h2 id="question">Question goes here</h2>
           </div>
-          <div class="score"><span id="score">0</span>/<span id="questionCount">10</span></div>
+          <div class="statStack">
+            <div class="score"><span id="score">0</span>/<span id="questionCount">10</span></div>
+            <div id="timerBox" class="timer hidden">⏱ <span id="timer">15</span>s</div>
+            <div class="streak">🔥 <span id="streak">0</span></div>
+          </div>
         </div>
 
         <div class="progress-wrap"><div id="progress" class="progress"></div></div>
@@ -66,32 +91,55 @@
       </section>
 
       <section id="endScreen" class="panel end hidden">
-        <h2>Great job! 🎉</h2>
+        <h2>Quest Complete! 🎉</h2>
         <p id="finalScore"></p>
         <p id="encouragement"></p>
+        <div id="earnedBadges" class="badges"></div>
         <div class="buttonRow">
+          <button id="reviewBtn" class="primary">Review Answers</button>
           <button id="playAgainBtn" class="primary">Play Again</button>
           <button id="homeBtn" class="ghost">Change Settings</button>
         </div>
       </section>
 
-      <section class="panel">
-        <h2>High Scores</h2>
-        <div id="highScores" class="scoresList"></div>
+      <section id="reviewScreen" class="panel hidden">
+        <h2>Answer Review</h2>
+        <div id="reviewList" class="reviewList"></div>
+        <button id="backFromReviewBtn" class="primary">Back to Results</button>
+      </section>
+
+      <section class="grid two">
+        <section class="panel">
+          <h2>High Scores</h2>
+          <div id="highScores" class="scoresList"></div>
+        </section>
+        <section class="panel">
+          <h2>Badge Case</h2>
+          <div id="badgeCase" class="badges"></div>
+        </section>
       </section>
 
       <dialog id="parentPanel">
         <h2>Parent Panel</h2>
-        <p>This prototype stores scores only on this device/browser.</p>
+        <p>This prototype stores scores, settings, and badges only on this device/browser.</p>
         <label>Questions per game
           <select id="questionsPerGame">
             <option value="5">5 questions</option>
             <option value="10" selected>10 questions</option>
             <option value="15">15 questions</option>
+            <option value="20">20 questions</option>
+          </select>
+        </label>
+        <label>Seconds per timed question
+          <select id="secondsPerQuestion">
+            <option value="10">10 seconds</option>
+            <option value="15" selected>15 seconds</option>
+            <option value="20">20 seconds</option>
+            <option value="30">30 seconds</option>
           </select>
         </label>
         <div class="buttonRow">
-          <button id="clearScoresBtn" class="danger">Clear Scores</button>
+          <button id="clearScoresBtn" class="danger">Clear Scores/Badges</button>
           <button id="closeParentBtn" class="primary">Done</button>
         </div>
       </dialog>
