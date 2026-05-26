@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kid Trivia Quest</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">Kid Trivia Quest</p>
+          <h1>Ready to play?</h1>
+        </div>
+        <div class="score">
+          <span id="score">0</span>/<span id="total">0</span>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div id="progress" class="progress"></div>
+      </div>
+
+      <div id="game">
+        <p id="category" class="category">Category</p>
+        <h2 id="question">Question goes here</h2>
+        <div id="answers" class="answers"></div>
+        <p id="feedback" class="feedback"></p>
+        <button id="nextBtn" class="next hidden">Next Question</button>
+      </div>
+
+      <div id="endScreen" class="end hidden">
+        <h2>Great job! 🎉</h2>
+        <p id="finalScore"></p>
+        <button id="restartBtn" class="next">Play Again</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
