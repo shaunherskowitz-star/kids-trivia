@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kid Trivia Quest V5</title>
+  <title>Kid Trivia Quest</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#6c4cff" />
+  <meta name="background-color" content="#ffe59d" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Kid Trivia" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -14,9 +24,11 @@
           <p class="eyebrow">Kid Trivia Quest</p>
           <h1>Trivia Adventure</h1>
           <p class="sub">Create a child profile, pick a quest, and let the app read questions out loud.</p>
+          <p id="installHint" class="installHint">On iPhone/iPad: tap Share → Add to Home Screen.</p>
         </div>
         <div class="heroActions">
           <button id="soundBtn" class="ghost">Sound: On</button>
+          <button id="installBtn" class="ghost hidden">Install App</button>
           <button id="parentBtn" class="ghost">Parent Panel</button>
         </div>
       </header>
