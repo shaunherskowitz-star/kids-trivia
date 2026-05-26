@@ -8,37 +8,95 @@
 </head>
 <body>
   <main class="app">
-    <section class="card">
-      <div class="topbar">
+    <section class="shell">
+      <header class="hero">
         <div>
           <p class="eyebrow">Kid Trivia Quest</p>
-          <h1>Ready to play?</h1>
+          <h1>Pick your adventure!</h1>
+          <p class="sub">Choose an age group and category, then answer fun questions.</p>
         </div>
-        <div class="score">
-          <span id="score">0</span>/<span id="total">0</span>
+        <button id="parentBtn" class="ghost">Parent Panel</button>
+      </header>
+
+      <section id="setup" class="panel">
+        <label>Player name
+          <input id="playerName" type="text" placeholder="Example: Saylor" maxlength="16" />
+        </label>
+
+        <div class="grid two">
+          <label>Age group
+            <select id="ageGroup">
+              <option value="5-7">Ages 5–7</option>
+              <option value="8-10">Ages 8–10</option>
+              <option value="11-13">Ages 11–13</option>
+            </select>
+          </label>
+
+          <label>Category
+            <select id="categorySelect">
+              <option value="All">All Categories</option>
+              <option value="Animals">Animals</option>
+              <option value="Science">Science</option>
+              <option value="Geography">Geography</option>
+              <option value="History">History</option>
+              <option value="Sports">Sports</option>
+              <option value="Food">Food</option>
+              <option value="Space">Space</option>
+            </select>
+          </label>
         </div>
-      </div>
 
-      <div class="progress-wrap">
-        <div id="progress" class="progress"></div>
-      </div>
+        <button id="startBtn" class="primary">Start Game</button>
+      </section>
 
-      <div id="game">
+      <section id="game" class="panel hidden">
+        <div class="topbar">
+          <div>
+            <p id="playerBadge" class="badge">Player</p>
+            <h2 id="question">Question goes here</h2>
+          </div>
+          <div class="score"><span id="score">0</span>/<span id="questionCount">10</span></div>
+        </div>
+
+        <div class="progress-wrap"><div id="progress" class="progress"></div></div>
         <p id="category" class="category">Category</p>
-        <h2 id="question">Question goes here</h2>
         <div id="answers" class="answers"></div>
         <p id="feedback" class="feedback"></p>
-        <button id="nextBtn" class="next hidden">Next Question</button>
-      </div>
+        <button id="nextBtn" class="primary hidden">Next</button>
+      </section>
 
-      <div id="endScreen" class="end hidden">
+      <section id="endScreen" class="panel end hidden">
         <h2>Great job! 🎉</h2>
         <p id="finalScore"></p>
-        <button id="restartBtn" class="next">Play Again</button>
-      </div>
+        <p id="encouragement"></p>
+        <div class="buttonRow">
+          <button id="playAgainBtn" class="primary">Play Again</button>
+          <button id="homeBtn" class="ghost">Change Settings</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>High Scores</h2>
+        <div id="highScores" class="scoresList"></div>
+      </section>
+
+      <dialog id="parentPanel">
+        <h2>Parent Panel</h2>
+        <p>This prototype stores scores only on this device/browser.</p>
+        <label>Questions per game
+          <select id="questionsPerGame">
+            <option value="5">5 questions</option>
+            <option value="10" selected>10 questions</option>
+            <option value="15">15 questions</option>
+          </select>
+        </label>
+        <div class="buttonRow">
+          <button id="clearScoresBtn" class="danger">Clear Scores</button>
+          <button id="closeParentBtn" class="primary">Done</button>
+        </div>
+      </dialog>
     </section>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
