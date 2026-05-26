@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kid Trivia Quest V4</title>
+  <title>Kid Trivia Quest V5</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -13,7 +13,7 @@
         <div>
           <p class="eyebrow">Kid Trivia Quest</p>
           <h1>Trivia Adventure</h1>
-          <p class="sub">Pick a player, choose a quest, earn badges, and learn as you go.</p>
+          <p class="sub">Create a child profile, pick a quest, and let the app read questions out loud.</p>
         </div>
         <div class="heroActions">
           <button id="soundBtn" class="ghost">Sound: On</button>
@@ -22,25 +22,21 @@
       </header>
 
       <section id="setup" class="panel">
-        <div class="grid two">
-          <label>Player name
-            <input id="playerName" type="text" placeholder="Example: Saylor" maxlength="16" />
+        <div class="profileRow">
+          <label>Child profile
+            <select id="profileSelect"></select>
           </label>
+          <button id="newProfileBtn" class="ghost">New Child Profile</button>
+        </div>
+
+        <div id="profileSummary" class="notice"></div>
+
+        <div class="grid three">
           <label>Quest mode
             <select id="modeSelect">
               <option value="classic">Classic</option>
               <option value="timed">Timed Challenge</option>
               <option value="streak">Streak Builder</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="grid three">
-          <label>Age group
-            <select id="ageGroup">
-              <option value="5-7">Ages 5–7</option>
-              <option value="8-10">Ages 8–10</option>
-              <option value="11-13">Ages 11–13</option>
             </select>
           </label>
           <label>Category
@@ -75,6 +71,11 @@
           <div>
             <p id="playerBadge" class="badge">Player</p>
             <h2 id="question">Question goes here</h2>
+            <div class="readControls">
+              <button id="readQuestionBtn" class="ghost">🔊 Read Question</button>
+              <button id="readAnswersBtn" class="ghost">🔊 Read Answers</button>
+              <button id="stopReadingBtn" class="ghost">Stop Reading</button>
+            </div>
           </div>
           <div class="statStack">
             <div class="score"><span id="score">0</span>/<span id="questionCount">10</span></div>
@@ -119,9 +120,34 @@
         </section>
       </section>
 
+      <dialog id="profileDialog">
+        <h2>Child Profile</h2>
+        <label>Child name
+          <input id="profileName" type="text" placeholder="Example: Saylor" maxlength="16" />
+        </label>
+        <label>Age group
+          <select id="profileAge">
+            <option value="5-7">Ages 5–7</option>
+            <option value="8-10">Ages 8–10</option>
+            <option value="11-13">Ages 11–13</option>
+          </select>
+        </label>
+        <label>Reading support
+          <select id="profileReadMode">
+            <option value="auto">Auto-read question and answers</option>
+            <option value="question">Auto-read question only</option>
+            <option value="manual">Manual read buttons only</option>
+          </select>
+        </label>
+        <div class="buttonRow">
+          <button id="saveProfileBtn" class="primary">Save Profile</button>
+          <button id="cancelProfileBtn" class="ghost">Cancel</button>
+        </div>
+      </dialog>
+
       <dialog id="parentPanel">
         <h2>Parent Panel</h2>
-        <p>This prototype stores scores, settings, and badges only on this device/browser.</p>
+        <p>This prototype stores profiles, scores, settings, and badges only on this device/browser.</p>
         <label>Questions per game
           <select id="questionsPerGame">
             <option value="5">5 questions</option>
@@ -138,8 +164,16 @@
             <option value="30">30 seconds</option>
           </select>
         </label>
+        <label>Voice speed
+          <select id="voiceRate">
+            <option value="0.75">Slower</option>
+            <option value="0.9" selected>Normal kid-friendly</option>
+            <option value="1">Regular</option>
+          </select>
+        </label>
         <div class="buttonRow">
           <button id="clearScoresBtn" class="danger">Clear Scores/Badges</button>
+          <button id="clearProfilesBtn" class="danger">Clear Profiles</button>
           <button id="closeParentBtn" class="primary">Done</button>
         </div>
       </dialog>
